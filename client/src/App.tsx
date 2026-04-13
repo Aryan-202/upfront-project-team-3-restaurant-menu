@@ -1,119 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+      {/* Navbar */}
+      <nav className="navbar container">
+        <h2>Unicuisine</h2>
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
+          <a href="#">Home</a>
+          <a href="#">Menu</a>
+          <a href="#">About</a>
+          <a href="#">Contact</a>
         </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        <button className="book-btn">(808) 555-0111</button>
+      </nav>
 
-      <div className="ticks"></div>
+      {/* Hero */}
+      <section className="hero container">
+        <h1>Dive Into Delicious Meal Dishes</h1>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="hero-images">
+          <img src="https://source.unsplash.com/200x200/?food" />
+          <img src="https://source.unsplash.com/200x200/?pizza" />
+          <img src="https://source.unsplash.com/200x200/?noodles" />
+          <img src="https://source.unsplash.com/200x200/?salad" />
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {/* Menu */}
+      <section className="container">
+        <h2>Breakfast Special Menu</h2>
+
+        <div className="menu">
+          <div className="menu-item">
+            <div className="menu-left">
+              <img src="https://source.unsplash.com/100x100/?burger" />
+              <div className="menu-text">
+                <h4>Crispy Chicken Poblano</h4>
+                <p>Beef, chicken, turkey</p>
+              </div>
+            </div>
+            <span>$120</span>
+          </div>
+        </div>
+
+        <button className="book-btn">Book a Table</button>
+      </section>
     </>
   )
 }

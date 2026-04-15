@@ -6,7 +6,7 @@ const heroImages = [
   { src: 'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=200&h=140&fit=crop', size: 'small', zIndex: 'z-10' },
 ];
 
-const sizeMap = {
+const sizeMap: Record<string, { width: string; height: string }> = {
   small:  { width: 'w-[130px]', height: 'h-[90px]' },
   medium: { width: 'w-[155px]', height: 'h-[105px]' },
   large:  { width: 'w-[220px]', height: 'h-[150px]' },

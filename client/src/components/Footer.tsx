@@ -14,7 +14,7 @@ const MailIcon = () => (
   </svg>
 );
 
-const FooterLink = ({ children }) => (
+const FooterLink = ({ children }: { children: React.ReactNode }) => (
   <a href="#" className="text-[#a8c5b0] text-sm hover:text-white transition-colors duration-150">
     {children}
   </a>

@@ -1,6 +1,7 @@
+import type { MenuSectionProps, MenuItemType } from '../types';
 import MenuCard from './MenuCard';
 
-export default function MenuSection({ title, icon, items, bg }) {
+export default function MenuSection({ title, icon, items, bg }: MenuSectionProps) {
   const leftItems  = items.slice(0, 4);
   const rightItems = items.slice(4, 8);
 
@@ -18,7 +19,7 @@ export default function MenuSection({ title, icon, items, bg }) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10">
           {/* Left column */}
           <div>
-            {leftItems.map((item, i) => (
+            {leftItems.map((item: MenuItemType, i: number) => (
               <div key={item.id}>
                 {i > 0 && <hr className="border-0 border-t-[1.5px] border-dotted border-[#c8bfad]" />}
                 <MenuCard item={item} />
@@ -28,7 +29,7 @@ export default function MenuSection({ title, icon, items, bg }) {
 
           {/* Right column */}
           <div>
-            {rightItems.map((item, i) => (
+            {rightItems.map((item: MenuItemType, i: number) => (
               <div key={item.id}>
                 {i > 0 && <hr className="border-0 border-t-[1.5px] border-dotted border-[#c8bfad]" />}
                 <MenuCard item={item} />

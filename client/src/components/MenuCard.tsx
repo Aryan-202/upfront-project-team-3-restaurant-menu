@@ -1,4 +1,6 @@
-export default function MenuCard({ item }) {
+import type { MenuItemType } from '../types';
+
+export default function MenuCard({ item }: { item: MenuItemType }) {
   return (
     <div className="flex items-center gap-3 py-3.5 group cursor-pointer transition-opacity duration-150 hover:opacity-75">
       <img

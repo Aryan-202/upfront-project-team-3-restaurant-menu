@@ -1,51 +1,80 @@
+import { useEffect, useState } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import MenuSection from './components/MenuSection';
+import Culture from './components/Culture';
+import Testimonial from './components/Testimonial';
+import Footer from './components/Footer';
+import type { MenuItemType } from './types';
+
 function App() {
+  const [menuItems, setMenuItems] = useState<MenuItemType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/menu');
+        const data = await response.json();
+        
+        // Map backend data to frontend type
+        const mappedData = data.map((item: any) => ({
+          id: item._id,
+          name: item.name,
+          desc: item.category || 'Delicious main course',
+          price: item.price,
+          img: item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200&h=200&fit=crop'
+        }));
+        
+        setMenuItems(mappedData);
+      } catch (error) {
+        console.error('Error fetching menu:', error);
+        // Fallback to empty or mock if needed
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
+  }, []);
+
+  // Filter items by category for sections
+  const breakfastItems = menuItems.filter(item => item.desc.toLowerCase().includes('breakfast')) || [];
+  const lunchItems = menuItems.filter(item => item.desc.toLowerCase().includes('lunch')) || [];
+
   return (
-    <>
-      {/* Navbar */}
-      <nav className="navbar container">
-        <h2>Unicuisine</h2>
-        <div>
-          <a href="#">Home</a>
-          <a href="#">Menu</a>
-          <a href="#">About</a>
-          <a href="#">Contact</a>
-        </div>
-        <button className="book-btn">(808) 555-0111</button>
-      </nav>
-
-      {/* Hero */}
-      <section className="hero container">
-        <h1>Dive Into Delicious Meal Dishes</h1>
-
-        <div className="hero-images">
-          <img src="https://source.unsplash.com/200x200/?food" />
-          <img src="https://source.unsplash.com/200x200/?pizza" />
-          <img src="https://source.unsplash.com/200x200/?noodles" />
-          <img src="https://source.unsplash.com/200x200/?salad" />
-        </div>
-      </section>
-
-      {/* Menu */}
-      <section className="container">
-        <h2>Breakfast Special Menu</h2>
-
-        <div className="menu">
-          <div className="menu-item">
-            <div className="menu-left">
-              <img src="https://source.unsplash.com/100x100/?burger" />
-              <div className="menu-text">
-                <h4>Crispy Chicken Poblano</h4>
-                <p>Beef, chicken, turkey</p>
-              </div>
-            </div>
-            <span>$120</span>
-          </div>
-        </div>
-
-        <button className="book-btn">Book a Table</button>
-      </section>
-    </>
-  )
+    <div className="bg-[#F9F5EE] min-h-screen font-sans text-gray-900">
+      <Navbar />
+      <main>
+        <Hero />
+        
+        {loading ? (
+          <div className="text-center py-20">Loading menu...</div>
+        ) : (
+          <>
+            <MenuSection 
+              title="Breakfast Special Menu" 
+              icon="🍳" 
+              items={breakfastItems.length > 0 ? breakfastItems : menuItems.slice(0, 8)} 
+              bg="bg-white" 
+            />
+            
+            <Culture />
+            
+            <MenuSection 
+              title="Lunch Special Menu" 
+              icon="🍲" 
+              items={lunchItems.length > 0 ? lunchItems : menuItems.slice(8, 16)} 
+              bg="bg-[#F9F5EE]" 
+            />
+            
+            <Testimonial />
+          </>
+        )}
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;

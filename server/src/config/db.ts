@@ -11,10 +11,14 @@ export const connectDB = async () => {
   }
 
   try {
-    await mongoose.connect(mongoUri);
+    await mongoose.connect(mongoUri, {
+      serverSelectionTimeoutMS: 5000,
+      maxPoolSize: 10
+    });
+
     console.log("MongoDB connected");
   } catch (error) {
-    console.error(error);
+    console.error("MongoDB connection failed:", error);
     process.exit(1);
   }
 };

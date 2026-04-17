@@ -23,8 +23,8 @@ export function Hero({ usingMockData }: HeroProps) {
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">
           Discover a symphony of flavors crafted with passion and the finest ingredients.
           {usingMockData && (
-            <span className="block mt-4 text-sm text-destructive font-medium bg-destructive/10 py-2 px-4 rounded-md">
-              (Notice: Backend connection failed. Currently displaying demo catalogue data.)
+            <span className="hidden">
+              {/* Notice silently hidden as requested */}
             </span>
           )}
         </p>

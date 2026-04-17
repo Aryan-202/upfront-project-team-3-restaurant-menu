@@ -17,7 +17,8 @@ function App() {
 
   const fetchMenuItems = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/menu')
+      const apiUrl = import.meta.env.VITE_API_URL || ""
+      const response = await fetch(`${apiUrl}/api/menu`)
       if (!response.ok) {
         throw new Error('Failed to fetch menu items')
       }
@@ -41,9 +42,7 @@ function App() {
           <Header />
           <div className="flex-1 flex items-center justify-center">
             <div className="text-center space-y-4">
-               {/* Note: I assume there might not be a built-in Spinner in shadcn, 
-                   but if there isn't we can just use an HTML spin. User's components/ui has spinner.tsx */}
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
               <p className="text-muted-foreground font-medium animate-pulse">Loading amazing food...</p>
             </div>
           </div>

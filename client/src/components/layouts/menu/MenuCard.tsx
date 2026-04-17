@@ -2,7 +2,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { type MenuItem } from '@/data/mock'
-import { PlusCircle } from 'lucide-react'
+import { PlusCircle, Box } from 'lucide-react'
 
 export function MenuCard({ item }: { item: MenuItem }) {
   return (
@@ -52,10 +52,14 @@ export function MenuCard({ item }: { item: MenuItem }) {
         </div>
       </CardContent>
 
-      <CardFooter className="pt-0 flex-none pb-6">
-        <Button className="w-full gap-2 rounded-full font-medium" size="lg">
-          <PlusCircle className="w-4 h-4" />
-          Add to Order
+      <CardFooter className="pt-4 flex-none pb-6 grid grid-cols-2 gap-2 w-full">
+        <Button variant="secondary" className="w-full gap-1.5 rounded-full font-medium px-2" size="default">
+          <Box className="w-4 h-4 shrink-0" />
+          <span className="truncate text-xs sm:text-sm">View in AR</span>
+        </Button>
+        <Button className="w-full gap-1.5 rounded-full font-medium px-2" size="default">
+          <PlusCircle className="w-4 h-4 shrink-0" />
+          <span className="truncate text-xs sm:text-sm">Add to Order</span>
         </Button>
       </CardFooter>
     </Card>

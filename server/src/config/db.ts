@@ -7,7 +7,7 @@ export const connectDB = async () => {
     console.error(
       "Missing environment variable: MONGO_URI."
     );
-    process.exit(1);
+    return;
   }
 
   try {
@@ -19,6 +19,5 @@ export const connectDB = async () => {
     console.log("MongoDB connected");
   } catch (error) {
     console.error("MongoDB connection failed:", error);
-    process.exit(1);
   }
 };

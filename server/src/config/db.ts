@@ -5,7 +5,7 @@ export const connectDB = async () => {
 
   if (!mongoUri) {
     console.error(
-      "Missing environment variable: MONGO_URI. Set it in .env or your deployment environment."
+      "Missing environment variable: MONGO_URI."
     );
     process.exit(1);
   }

@@ -15,9 +15,9 @@ export function Hero({ usingMockData }: HeroProps) {
           Now Open for Dine-in & Delivery
         </div>
         
-        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-foreground drop-shadow-sm">
+        <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 text-black dark:text-white drop-shadow-sm">
           Experience Culinary <br className="hidden md:block" />
-          <span className="text-primary bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent">Excellence</span>
+          <span className="text-primary">Excellence</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mb-8 leading-relaxed">

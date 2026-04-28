@@ -9,6 +9,7 @@ interface ValidationRule {
   maxLength?: number;
   min?: number;
   max?: number;
+  enum?: string[];
 }
 
 export const validateRequest = (rules: ValidationRule[]) => {
@@ -40,6 +41,9 @@ export const validateRequest = (rules: ValidationRule[]) => {
             }
             if (rule.maxLength && value.length > rule.maxLength) {
               errors.push(`${rule.field} must be no more than ${rule.maxLength} characters long`);
+            }
+            if (rule.enum && !rule.enum.includes(value)) {
+              errors.push(`${rule.field} must be one of: ${rule.enum.join(", ")}`);
             }
           }
           break;
@@ -80,11 +84,14 @@ export const validateRequest = (rules: ValidationRule[]) => {
   };
 };
 
+import { MenuCategory } from "../@types/models";
+
 // Common validation rules
 export const menuItemValidationRules: ValidationRule[] = [
   { field: "name", type: "string", required: true, minLength: 1, maxLength: 100 },
+  { field: "description", type: "string", required: true },
   { field: "price", type: "number", required: true, min: 0 },
-  { field: "calories", type: "number", required: true, min: 0 },
-  { field: "category", type: "string", required: true, minLength: 1, maxLength: 50 },
-  { field: "image", type: "string", required: true, minLength: 1 },
+  { field: "category", type: "string", required: true, enum: Object.values(MenuCategory) },
+  { field: "thumbnailUrl", type: "string", required: true, minLength: 1 },
+  { field: "nutritionId", type: "string", required: true },
 ];

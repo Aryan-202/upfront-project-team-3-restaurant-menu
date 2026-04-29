@@ -5,16 +5,13 @@ import { type MenuItem } from '@/data/mock'
 import { PlusCircle, Box } from 'lucide-react'
 import { useState } from 'react'
 import { ARViewer } from '../../features/ARViewer'
-import sampleModel from '../../../assets/models/sample/food-icon.fbx?url'
-
 export function MenuCard({ item }: { item: MenuItem }) {
   const [showAR, setShowAR] = useState(false)
   
-  // Use a working .glb model for AR demonstration
-  // IMPORTANT: .fbx files (like the one provided) are not supported by web AR viewers.
-  // You MUST convert your .fbx to .glb for the "Place in Your Room" feature to work.
-  const workingGlb = "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
-  const modelUrl = workingGlb; // Temporarily overriding to show that AR works
+  // Using a working .glb model for AR demonstration.
+  // Note: .fbx files are not supported for web AR. 
+  // To use your own model, convert your .fbx to .glb and import it here.
+  const modelUrl = "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
   
   return (
     <Card className="flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 bg-card group h-full">

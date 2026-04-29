@@ -1,4 +1,6 @@
 
+import { useEffect, useRef } from 'react';
+
 interface ARViewerProps {
   modelUrl: string;
   onClose: () => void;
@@ -7,6 +9,29 @@ interface ARViewerProps {
 
 export function ARViewer({ modelUrl, onClose, itemName }: ARViewerProps) {
   const ModelViewer = 'model-viewer' as any;
+  const viewerRef = useRef<any>(null);
+
+  useEffect(() => {
+    const viewer = viewerRef.current;
+    if (!viewer) return;
+
+    const handleError = (e: any) => {
+      console.error("Model Viewer Error:", e);
+    };
+
+    const handleLoad = () => {
+      console.log("Model Loaded successfully");
+    };
+
+    viewer.addEventListener('error', handleError);
+    viewer.addEventListener('load', handleLoad);
+
+    return () => {
+      viewer.removeEventListener('error', handleError);
+      viewer.removeEventListener('load', handleLoad);
+    };
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8 animate-in fade-in duration-300">
       <div className="relative w-full max-w-4xl h-[70vh] md:h-[80vh] bg-card rounded-3xl overflow-hidden shadow-2xl border border-border flex flex-col">
@@ -26,6 +51,7 @@ export function ARViewer({ modelUrl, onClose, itemName }: ARViewerProps) {
         
         <div className="flex-1 relative bg-muted/20">
           <ModelViewer
+            ref={viewerRef}
             src={modelUrl}
             ar
             ar-modes="webxr scene-viewer quick-look"

@@ -10,10 +10,11 @@ import sampleModel from '../../../assets/models/sample/food-icon.fbx?url'
 export function MenuCard({ item }: { item: MenuItem }) {
   const [showAR, setShowAR] = useState(false)
   
-  // Use the sample model provided by the user
-  // Note: Standard web AR viewers require .glb or .gltf. 
-  // If the .fbx doesn't load, we fallback to a sample .glb for demonstration.
-  const modelUrl = sampleModel || "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
+  // Use a working .glb model for AR demonstration
+  // IMPORTANT: .fbx files (like the one provided) are not supported by web AR viewers.
+  // You MUST convert your .fbx to .glb for the "Place in Your Room" feature to work.
+  const workingGlb = "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
+  const modelUrl = workingGlb; // Temporarily overriding to show that AR works
   
   return (
     <Card className="flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 bg-card group h-full">

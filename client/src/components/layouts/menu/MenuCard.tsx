@@ -3,8 +3,18 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { type MenuItem } from '@/data/mock'
 import { PlusCircle, Box } from 'lucide-react'
+import { useState } from 'react'
+import { ARViewer } from '../../features/ARViewer'
+import sampleModel from '../../../assets/models/sample/food-icon.fbx?url'
 
 export function MenuCard({ item }: { item: MenuItem }) {
+  const [showAR, setShowAR] = useState(false)
+  
+  // Use the sample model provided by the user
+  // Note: Standard web AR viewers require .glb or .gltf. 
+  // If the .fbx doesn't load, we fallback to a sample .glb for demonstration.
+  const modelUrl = sampleModel || "https://modelviewer.dev/shared-assets/models/glTF-Sample-Models/2.0/Avocado/glTF-Binary/Avocado.glb"
+  
   return (
     <Card className="flex flex-col overflow-hidden hover:shadow-xl transition-all duration-300 border-border/50 bg-card group h-full">
       <div className="aspect-[4/3] relative overflow-hidden bg-muted">
@@ -53,8 +63,13 @@ export function MenuCard({ item }: { item: MenuItem }) {
       </CardContent>
 
       <CardFooter className="pt-4 flex-none pb-6 grid grid-cols-2 gap-2 w-full">
-        <Button variant="secondary" className="w-full gap-1.5 rounded-full font-medium px-2" size="default">
-          <Box className="w-4 h-4 shrink-0" />
+        <Button 
+          variant="secondary" 
+          className="w-full gap-1.5 rounded-full font-medium px-2 group/btn hover:bg-primary hover:text-primary-foreground transition-all duration-300" 
+          size="default"
+          onClick={() => setShowAR(true)}
+        >
+          <Box className="w-4 h-4 shrink-0 group-hover/btn:scale-110 transition-transform" />
           <span className="truncate text-xs sm:text-sm">View in AR</span>
         </Button>
         <Button className="w-full gap-1.5 rounded-full font-medium px-2" size="default">
@@ -62,6 +77,13 @@ export function MenuCard({ item }: { item: MenuItem }) {
           <span className="truncate text-xs sm:text-sm">Add to Order</span>
         </Button>
       </CardFooter>
+      {showAR && (
+        <ARViewer 
+          modelUrl={modelUrl} 
+          itemName={item.name} 
+          onClose={() => setShowAR(false)} 
+        />
+      )}
     </Card>
   )
 }

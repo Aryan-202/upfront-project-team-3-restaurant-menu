@@ -1,24 +1,40 @@
-import mongoose from "mongoose";
-import "./nutrition.model";
-
 const menuSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    price: { type: Number, required: true },
-    calories: { type: Number, required: true },
-    category: { type: String, required: true },
-    image: { type: String, required: true },
-    model3D: { type: String, required: false },
-    nutrients: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Nutrition"
-      }
-    ]
-  },
-  {
-    timestamps: true
-  }
-);
+{
+  name: { type: String, required: true },
+  tagline: String,
+  description: String,
 
-export const MenuItem = mongoose.model("MenuItem", menuSchema);
+  price: { type: Number, required: true },
+  calories: Number,
+  protein: Number,
+  carbs: Number,
+  fat: Number,
+
+  category: { type: String, required: true },
+  veg: Boolean,
+
+  image: String,
+  model3D: String,
+  modelColor: String,
+  shape: String,
+
+  allergens: [String],
+
+  ingredients: [
+    {
+      name: String,
+      benefit: String,
+      position: [Number],
+      color: String
+    }
+  ],
+
+  nutrients: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Nutrition"
+    }
+  ]
+},
+{ timestamps: true }
+);

@@ -95,9 +95,9 @@ A modern, responsive restaurant menu application built with React, TypeScript, a
 ### Available Scripts
 
 **Client:**
-- `pnpm run dev` - Start development server
-- `pnpm run build` - Build for production
-- `pnpm run lint` - Run ESLint
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
 
 **Server:**
 - `pnpm run dev` - Start development server with hot reload

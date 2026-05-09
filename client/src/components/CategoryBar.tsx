@@ -7,6 +7,7 @@ interface Props {
   onChange: (c: Category | "All") => void;
 }
 
+
 export function CategoryBar({ active, onChange }: Props) {
   const all: (Category | "All")[] = ["All", ...categories];
   return (

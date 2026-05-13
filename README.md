@@ -30,7 +30,7 @@ A modern, responsive restaurant menu application built with React, TypeScript, a
 ### Prerequisites
 - Node.js (v18 or higher)
 - MongoDB (for full functionality)
-- pnpm package manager
+- npm package manager
 
 ### Installation
 
@@ -44,7 +44,7 @@ A modern, responsive restaurant menu application built with React, TypeScript, a
    ```bash
    # Install client dependencies
    cd client
-   pnpm install
+   npm install
 
    # Install server dependencies
    cd ../server
@@ -62,7 +62,7 @@ A modern, responsive restaurant menu application built with React, TypeScript, a
    **Terminal 2 - Frontend:**
    ```bash
    cd client
-   pnpm run dev
+   npm run dev
    ```
 
 4. **Open your browser**
